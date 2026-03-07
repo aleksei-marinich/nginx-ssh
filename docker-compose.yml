@@ -1,57 +1,16 @@
 version: '3.8'
 
 services:
-  # Nginx прокси
   nginx:
-    build: ./nginx
-    container_name: ${APP_NAME:-myapp}-nginx
+    image: nginx:latest
+    container_name: nginx-ssh-proxy
     restart: unless-stopped
-    network_mode: host  # Нужно для доступа к SSH хоста
+    network_mode: "host"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./www:/usr/share/nginx/html:ro
-    environment:
-      - SERVER_IP=${SERVER_IP:-localhost}
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "3"
-
-  # Ваше приложение (раскомментируйте когда будет готово)
-  # app:
-  #   build: ./app
-  #   container_name: ${APP_NAME:-myapp}-app
-  #   restart: unless-stopped
-  #   expose:
-  #     - "3000"
-  #   environment:
-  #     - NODE_ENV=${APP_ENV:-production}
-  #     - DEBUG=${APP_DEBUG:-false}
-  #   volumes:
-  #     - ./app:/app  # Только для разработки!
-  #   logging:
-  #     driver: "json-file"
-  #     options:
-  #       max-size: "10m"
-  #       max-file: "3"
-
-  # Если нужна база данных
-  # db:
-  #   image: postgres:15-alpine
-  #   container_name: ${APP_NAME:-myapp}-db
-  #   restart: unless-stopped
-  #   environment:
-  #     - POSTGRES_DB=${DB_NAME:-myapp}
-  #     - POSTGRES_USER=${DB_USER:-myapp}
-  #     - POSTGRES_PASSWORD=${DB_PASSWORD:-changeme}
-  #   volumes:
-  #     - db-data:/var/lib/postgresql/data
-  #   logging:
-  #     driver: "json-file"
-  #     options:
-  #       max-size: "10m"
-  #       max-file: "3"
-
-# volumes:
-#   db-data:

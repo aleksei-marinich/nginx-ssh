@@ -1,19 +1,10 @@
-zz# MyApp
-
-## 📋 Описание
-Проект на Docker с Nginx и поддержкой SSH через HTTPS (порт 443).
+# SSH через HTTPS прокси
 
 ## 🚀 Быстрый старт
 
-### Локальная разработка
 ```bash
-# Клонируем репозиторий
-git clone <your-repo-url>
-cd myapp
-
-# Настраиваем окружение
-cp .env.example .env
-# Отредактируйте .env под свои нужды
-
-# Запускаем
-docker compose up -d
+# Клонируем и запускаем
+git clone https://github.com/aleksei-marinich/nginx-ssh.git
+cd nginx-ssh
+chmod +x scripts/deploy.sh
+./scripts/deploy.sh
