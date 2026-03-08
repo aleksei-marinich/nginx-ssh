@@ -1,10 +1,10 @@
-# SSH через HTTPS прокси
+# WebSSH через Docker + Nginx
 
-## 🚀 Быстрый старт
+Мгновенный доступ к SSH через браузер, обходя блокировку порта 22.
 
-```bash
-# Клонируем и запускаем
-git clone https://github.com/aleksei-marinich/nginx-ssh.git
-cd nginx-ssh
-chmod +x scripts/deploy.sh
-./scripts/deploy.sh
+## Быстрый старт
+
+1. **Клонируйте репозиторий на сервер** (через noVNC или другой доступ):
+   ```bash
+   git clone https://github.com/ваш-username/webssh-docker.git
+   cd webssh-docker
