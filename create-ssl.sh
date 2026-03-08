@@ -1,0 +1,8 @@
+#!/bin/bash
+# create-ssl.sh - запустить один раз после клонирования
+
+mkdir -p ssl
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -keyout ssl/server.key \
+    -out ssl/server.crt \
+    -subj "/C=RU/ST=Moscow/L=Moscow/O=MyOrg/CN=ваш-домен-или-IP"
