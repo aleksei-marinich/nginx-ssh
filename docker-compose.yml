@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  webssh:
+    image: cleberjsantos/webssh:latest
+    container_name: webssh
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Moscow
+    ports:
+      - "8888:8888"  # Прямой доступ для отладки (можно убрать)
+    networks:
+      - webssh-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: webssh-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - webssh
+    networks:
+      - webssh-network
+
+networks:
+  webssh-network:
+    driver: bridge
